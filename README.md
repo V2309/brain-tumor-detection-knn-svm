@@ -248,6 +248,8 @@ transform = Compose([
 ---
 
 ## 🖥️ Web Interface
+![image](https://github.com/user-attachments/assets/d89bc976-4acc-4979-8706-3d0cd35b5751)
+
 
 | Route | Method | Description |
 |-------|--------|-------------|
