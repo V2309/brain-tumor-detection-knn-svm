@@ -10,8 +10,8 @@
 
 <br/>
 
-> **Hệ thống phát hiện khối u não thông minh từ ảnh MRI**  
-> Ứng dụng Machine Learning kết hợp Deep Learning để phân loại 4 loại u não với độ chính xác cao.
+> **Intelligent Brain Tumor Detection from MRI Scans**  
+> A Machine Learning + Deep Learning application for classifying 4 types of brain tumors with high accuracy.
 
 <br/>
 
@@ -29,38 +29,43 @@
 
 ---
 
-## 📌 Tổng Quan
+## 📌 Overview
 
-Hệ thống **Brain Tumor Detection** là một ứng dụng web tích hợp Deep Learning và Machine Learning để phân tích ảnh MRI não, hỗ trợ bác sĩ và nhà nghiên cứu trong việc chẩn đoán khối u não nhanh chóng và chính xác.
+The **Brain Tumor Detection** system is a web application that combines Deep Learning and Machine Learning to analyze brain MRI images, assisting doctors and researchers in diagnosing brain tumors quickly and accurately.
 
-### ✨ Điểm Nổi Bật
+### ✨ Key Highlights
 
-| Tính năng | Mô tả |
-|-----------|-------|
-| 🔬 **Dual-Model Inference** | So sánh đồng thời kết quả từ KNN và SVM |
-| 🧬 **ResNet18 Feature Extraction** | Trích xuất đặc trưng sâu từ ảnh MRI |
-| 📊 **PCA Dimensionality Reduction** | Tối ưu hóa không gian đặc trưng |
-| 🖼️ **Visual Bounding Box** | Hiển thị vùng nghi ngờ trực quan trên ảnh |
-| 📈 **Confidence Score** | Báo cáo xác suất chi tiết theo từng lớp |
-| 🌐 **Web Interface** | Giao diện Flask dễ sử dụng |
+| Feature | Description |
+|---------|-------------|
+| 🔬 **Dual-Model Inference** | Simultaneous comparison of KNN and SVM predictions |
+| 🧬 **ResNet18 Feature Extraction** | Deep feature extraction from MRI scans |
+| 📊 **PCA Dimensionality Reduction** | Optimized feature space compression |
+| 🖼️ **Visual Bounding Box** | Visual annotation of suspected tumor regions |
+| 📈 **Confidence Score** | Detailed probability report per class |
+| 🌐 **Web Interface** | User-friendly Flask-based interface |
 
 ---
 
-## 🎯 Các Loại U Não Được Phân Loại
+## 🎥 Demo
+[https://github.com/V2309/brain-tumor-detection-knn-svm/assets/XXXXX/demo.mp4](https://github.com/user-attachments/assets/d7af1613-a2af-477b-95e5-79c0bf8d6bdc)
+
+
+
+## 🎯 Tumor Classes
 
 ```
 ┌─────────────────┬──────────────────┬─────────────────┬──────────────────┐
 │    🔴 Glioma    │  🟠 Meningioma   │  ✅ No Tumor    │  🟣 Pituitary   │
 ├─────────────────┼──────────────────┼─────────────────┼──────────────────┤
-│  U tế bào thần  │  U màng não, phổ │  Não bình thường│  U tuyến yên,   │
-│  kinh đệm, nguy │  biến, thường    │  không phát hiện│  ảnh hưởng đến  │
-│  hiểm cao       │  lành tính       │  khối u         │  nội tiết       │
+│ Glial cell tumor│ Meninges tumor,  │ Normal brain    │ Pituitary gland  │
+│ high malignancy │ usually benign,  │ scan, no tumor  │ tumor, affects   │
+│ rate            │ slow-growing     │ detected        │ hormone control  │
 └─────────────────┴──────────────────┴─────────────────┴──────────────────┘
 ```
 
 ---
 
-## 🏗️ Kiến Trúc Hệ Thống
+## 🏗️ System Architecture
 
 ```
                         📤 Upload MRI Image
@@ -107,63 +112,63 @@ Hệ thống **Brain Tumor Detection** là một ứng dụng web tích hợp De
 
 ---
 
-## 📁 Cấu Trúc Dự Án
+## 📁 Project Structure
 
 ```
 brain_detection/
 │
 ├── 📂 src/
-│   ├── 🐍 dataset.py          # Tải và tiền xử lý dữ liệu MRI
-│   ├── 🧠 model.py            # Kiến trúc ResNet50 (BrainTumorClassifier)
-│   └── 🏋️ train.py            # Huấn luyện và đánh giá mô hình
+│   ├── 🐍 dataset.py          # Dataset loading and preprocessing pipeline
+│   ├── 🧠 model.py            # ResNet50-based BrainTumorClassifier architecture
+│   └── 🏋️ train.py            # Model training and evaluation scripts
 │
 ├── 📂 model/
-│   ├── 🤖 knn_model.pkl       # Mô hình KNN đã huấn luyện
-│   ├── 🤖 svm_model.pkl       # Mô hình SVM đã huấn luyện
-│   └── 📉 pca_model.pkl       # Mô hình PCA giảm chiều
+│   ├── 🤖 knn_model.pkl       # Trained K-Nearest Neighbors model
+│   ├── 🤖 svm_model.pkl       # Trained Support Vector Machine model
+│   └── 📉 pca_model.pkl       # PCA dimensionality reduction model
 │
 ├── 📂 data/
-│   ├── 📂 train/              # Dữ liệu huấn luyện (MRI images)
+│   ├── 📂 train/              # Training MRI images
 │   │   ├── glioma/
 │   │   ├── meningioma/
 │   │   ├── notumor/
 │   │   └── pituitary/
-│   └── 📂 test/               # Dữ liệu kiểm tra
+│   └── 📂 test/               # Testing MRI images
 │
-├── 📂 Brain-Tumor-Test-Images/ # Ảnh mẫu để test nhanh
+├── 📂 Brain-Tumor-Test-Images/ # Sample images for quick testing
 │
 ├── 📂 templates/
-│   ├── DiseaseDet.html         # Trang chủ
-│   ├── uimg.html              # Trang upload ảnh
-│   ├── pred.html              # Trang hiển thị kết quả
-│   └── error.html             # Trang lỗi
+│   ├── DiseaseDet.html         # Home page
+│   ├── uimg.html              # Image upload page
+│   ├── pred.html              # Prediction result page
+│   └── error.html             # Error page
 │
-├── 📂 static/                 # CSS, JS, ảnh tĩnh
-├── 📂 upload/                 # Thư mục lưu ảnh upload
-├── 🐍 app.py                  # Flask web application chính
-├── 🧪 test.py                 # Script kiểm tra mô hình
-└── 📋 requirements.txt        # Danh sách thư viện cần thiết
+├── 📂 static/                 # CSS, JavaScript, static assets
+├── 📂 upload/                 # Uploaded image storage
+├── 🐍 app.py                  # Main Flask web application
+├── 🧪 test.py                 # Model testing script
+└── 📋 requirements.txt        # Python package dependencies
 ```
 
 ---
 
-## ⚙️ Cài Đặt & Chạy Dự Án
+## ⚙️ Installation & Setup
 
-### 📋 Yêu Cầu Hệ Thống
+### 📋 System Requirements
 
 - Python **3.8+**
-- CUDA **11.8+** *(khuyến nghị cho GPU)* hoặc CPU
-- RAM tối thiểu **8GB**
+- CUDA **11.8+** *(recommended for GPU acceleration)* or CPU
+- Minimum **8GB** RAM
 
-### 🚀 Hướng Dẫn Cài Đặt
+### 🚀 Step-by-Step Installation
 
-**Bước 1: Clone repository**
+**Step 1: Clone the repository**
 ```bash
 git clone https://github.com/<your-username>/brain_detection.git
 cd brain_detection
 ```
 
-**Bước 2: Tạo môi trường ảo**
+**Step 2: Create a virtual environment**
 ```bash
 python -m venv venv
 
@@ -174,103 +179,99 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-**Bước 3: Cài đặt thư viện**
+**Step 3: Install dependencies**
 
-> ⚠️ **Nếu có GPU (CUDA 11.8):**
+> ⚠️ **With GPU (CUDA 11.8):**
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install flask scikit-learn pillow numpy joblib
 ```
 
-> 💻 **Nếu chỉ dùng CPU:**
+> 💻 **CPU only:**
 ```bash
 pip install -r requirements.txt
 ```
 
-**Bước 4: Khởi động ứng dụng**
+**Step 4: Launch the application**
 ```bash
 python app.py
 ```
 
-**Bước 5: Mở trình duyệt**
+**Step 5: Open in your browser**
 ```
 http://localhost:5000
 ```
 
 ---
 
-## 🧪 Huấn Luyện Mô Hình
+## 🧪 Training the Model
 
-Nếu muốn huấn luyện lại từ đầu:
+To retrain from scratch:
 
 ```bash
-# Chuẩn bị dataset
+# Prepare the dataset
 python src/dataset.py
 
-# Huấn luyện mô hình
+# Train the model
 python src/train.py
 ```
 
-> 📌 Dataset khuyến nghị: [Brain Tumor MRI Dataset - Kaggle](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)  
-> Cấu trúc thư mục `data/train/` và `data/test/` theo từng lớp phân loại.
+> 📌 Recommended dataset: [Brain Tumor MRI Dataset — Kaggle](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)  
+> Organize `data/train/` and `data/test/` directories with sub-folders per class.
 
 ---
 
-## 📊 Pipeline Xử Lý Ảnh
+## 📊 Image Processing Pipeline
 
 ```python
-# 1. Tiền xử lý ảnh
+# Step 1: Image preprocessing
 transform = Compose([
-    Resize((224, 224)),       # Chuẩn hóa kích thước
-    ToTensor(),                # Chuyển sang tensor
-    Normalize(                 # Chuẩn hóa theo ImageNet
+    Resize((224, 224)),       # Standardize dimensions
+    ToTensor(),                # Convert to tensor
+    Normalize(                 # ImageNet normalization
         mean=[0.485, 0.456, 0.406],
         std=[0.229, 0.224, 0.225]
     )
 ])
 
-# 2. Trích xuất đặc trưng với ResNet18
-# Output: vector 512 chiều
+# Step 2: Feature extraction via ResNet18
+# Output: 512-dimensional feature vector
 
-# 3. Giảm chiều với PCA
-# Tăng tốc độ & giảm nhiễu
+# Step 3: PCA dimensionality reduction
+# Boost speed & reduce noise
 
-# 4. Phân loại song song
-# ├── KNN → class + confidence
-# └── SVM → class + confidence
+# Step 4: Parallel classification
+# ├── KNN → class label + confidence
+# └── SVM → class label + confidence
 ```
 
 ---
 
-## 🖥️ Giao Diện Web
+## 🖥️ Web Interface
 
--  ![image](https://github.com/user-attachments/assets/d89bc976-4acc-4979-8706-3d0cd35b5751)
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/` | GET | Home page with system overview |
+| `/uimg` | GET | MRI image upload form |
+| `/uimg` | POST | Process image & return classification results |
 
-
-
-| Trang | Mô tả |
-|-------|-------|
-| `/` | Trang chủ giới thiệu hệ thống |
-| `/uimg` (GET) | Form upload ảnh MRI |
-| `/uimg` (POST) | Xử lý và trả về kết quả phân loại |
-
-### 📤 Định Dạng Ảnh Được Hỗ Trợ
+### 📤 Supported Image Formats
 
 ```
 ✅ PNG    ✅ JPG / JPEG    ✅ GIF
 ```
-> 📦 Kích thước tối đa: **16 MB**
+> 📦 Maximum file size: **16 MB**
 
 ---
 
-## 🔬 Chi Tiết Kỹ Thuật
+## 🔬 Technical Details
 
 ### Feature Extractor — ResNet18
 
 ```python
 resnet = resnet18(weights=ResNet18_Weights.DEFAULT)
-resnet.fc = nn.Identity()   # Bỏ lớp classification cuối
-resnet.eval()               # Chế độ inference
+resnet.fc = nn.Identity()   # Remove final classification head
+resnet.eval()               # Set to inference mode
 ```
 
 ### BrainTumorClassifier — ResNet50 (Fine-tuned)
@@ -279,68 +280,68 @@ resnet.eval()               # Chế độ inference
 class BrainTumorClassifier(nn.Module):
     def __init__(self, num_classes=2):
         self.resnet = resnet50(weights=ResNet50_Weights.DEFAULT)
-        # Fine-tune toàn bộ layers
+        # Fine-tune all layers
         self.resnet.fc = nn.Linear(n_inputs, num_classes)
 ```
 
 ### Dual Classification Pipeline
 
-| Model | Ưu điểm | Nhược điểm |
-|-------|---------|------------|
-| **KNN** | Đơn giản, giải thích được | Chậm với dữ liệu lớn |
-| **SVM** | Mạnh với không gian cao chiều | Cần điều chỉnh hyperparameter |
+| Model | Strengths | Limitations |
+|-------|-----------|-------------|
+| **KNN** | Simple, interpretable, no training phase | Slow on large datasets |
+| **SVM** | Powerful in high-dimensional spaces | Requires careful hyperparameter tuning |
 
 ---
 
-## 📈 Kết Quả & Đánh Giá
+## 📈 Results & Output
 
-> Kết quả được hiển thị trực tiếp trên giao diện web gồm:
-- 🖼️ Ảnh gốc upload
-- 🔲 Ảnh KNN với bounding box và nhãn
-- 🔲 Ảnh SVM với bounding box và nhãn
-- 📊 Xác suất chi tiết cho 4 lớp: Glioma, Meningioma, No Tumor, Pituitary
-
----
-
-## 🤝 Đóng Góp
-
-Mọi đóng góp đều được hoan nghênh! Vui lòng:
-
-1. 🍴 Fork repository này
-2. 🌿 Tạo branch mới: `git checkout -b feature/ten-tinh-nang`
-3. 💾 Commit thay đổi: `git commit -m 'feat: Thêm tính năng X'`
-4. 📤 Push lên branch: `git push origin feature/ten-tinh-nang`
-5. 📬 Tạo Pull Request
+> Results are displayed directly on the web interface, including:
+- 🖼️ Original uploaded MRI image
+- 🔲 KNN-annotated image with bounding box and label
+- 🔲 SVM-annotated image with bounding box and label
+- 📊 Class probabilities for all 4 categories: Glioma, Meningioma, No Tumor, Pituitary
 
 ---
 
-## 👨‍💻 Tác Giả
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. 🍴 Fork this repository
+2. 🌿 Create your feature branch: `git checkout -b feature/your-feature-name`
+3. 💾 Commit your changes: `git commit -m 'feat: Add feature X'`
+4. 📤 Push to the branch: `git push origin feature/your-feature-name`
+5. 📬 Open a Pull Request
+
+---
+
+## 👨‍💻 Author
 
 <div align="center">
 
-| | Thông tin |
+| | Information |
 |---|---|
-| 👤 **Họ tên** | Huỳnh Văn An |
-| 🎓 **MSSV** | 2200011724 |
-| 🏫 **Trường** | Đại học ... |
-| 📧 **Email** | *(thêm email của bạn)* |
-| 🔗 **GitHub** | *(thêm GitHub của bạn)* |
+| 👤 **Full Name** | Huynh Van An |
+| 🎓 **Student ID** | 2200011724 |
+| 🏫 **University** | *(add your university name)* |
+| 📧 **Email** | *(add your email)* |
+| 🔗 **GitHub** | *(add your GitHub profile)* |
 
 </div>
 
 ---
 
-## 📄 Giấy Phép
+## 📄 License
 
-Dự án này được phân phối dưới giấy phép **MIT License**. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
+This project is distributed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
-## 📚 Tài Liệu Tham Khảo
+## 📚 References
 
-- [Brain Tumor MRI Dataset - Kaggle](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
+- [Brain Tumor MRI Dataset — Kaggle](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
 - [PyTorch Documentation](https://pytorch.org/docs/stable/index.html)
-- [ResNet: Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
+- [ResNet: Deep Residual Learning for Image Recognition (He et al., 2015)](https://arxiv.org/abs/1512.03385)
 - [Flask Documentation](https://flask.palletsprojects.com/)
 - [Scikit-learn: KNN & SVM](https://scikit-learn.org/stable/)
 
@@ -348,10 +349,10 @@ Dự án này được phân phối dưới giấy phép **MIT License**. Xem fi
 
 <div align="center">
 
-**⭐ Nếu dự án hữu ích, hãy cho một ngôi sao nhé! ⭐**
+**⭐ If you find this project helpful, please give it a star! ⭐**
 
 <img src="https://img.shields.io/github/stars/yourusername/brain_detection?style=social"/>
 
-*Made with ❤️ and 🧠 by Huỳnh Văn An*
+*Made with ❤️ and 🧠 by Huynh Van An*
 
 </div>
