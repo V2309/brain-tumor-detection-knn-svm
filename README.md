@@ -134,6 +134,13 @@ brain_detection/
 │   │   ├── notumor/
 │   │   └── pituitary/
 │   └── 📂 test/               # Testing MRI images
+├── 📂 dataset/
+│   ├── 📂 train/              # Training MRI images
+│   │   ├── glioma/
+│   │   ├── meningioma/
+│   │   ├── notumor/
+│   │   └── pituitary/
+│   └── 📂 test/               # Testing MRI images
 │
 ├── 📂 Brain-Tumor-Test-Images/ # Sample images for quick testing
 │
