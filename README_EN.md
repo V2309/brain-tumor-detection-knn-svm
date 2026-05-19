@@ -46,6 +46,11 @@ The **Brain Tumor Detection** system is a web application that combines Deep Lea
 
 ---
 
+## 🎥 Demo
+[https://github.com/V2309/brain-tumor-detection-knn-svm/assets/XXXXX/demo.mp4](https://github.com/user-attachments/assets/d7af1613-a2af-477b-95e5-79c0bf8d6bdc)
+
+
+
 ## 🎯 Tumor Classes
 
 ```
